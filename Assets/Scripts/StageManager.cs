@@ -2,25 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHP : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
-    /// <summary>
-    /// ShootingManagerスクリプト
-    /// </summary>
-    public ShootingManager shoMan;
-    public int enemyHPint;
+    public int killedEnemyCount;
+    public int stageNumber;
     // Start is called before the first frame update
     void Start()
     {
-        enemyHPint = 5;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (shoMan.isHit)
+        if (killedEnemyCount >= 30)
         {
-            enemyHPint--;
+
         }
     }
 }

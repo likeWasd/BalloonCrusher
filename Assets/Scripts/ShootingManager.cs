@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ShootingManager : MonoBehaviour
 {
-    public bool isHit;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,22 +18,14 @@ public class ShootingManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 40.0f))
         {
             GameObject hitObject = hit.collider.gameObject;
-            // もし左クリックされたら(一瞬)
+            // 攻撃の処理
             if (Input.GetMouseButtonDown(0))
             {
-                // RaycastのgameObjectの座標のログを出す
-                // Debug.Log(hitObject.transform.position);
-                // もしRaycastのgameObjectのタグがEnemyなら
+                // Enemyに当たったときの処理
                 if (hitObject.CompareTag("Enemy"))
                 {
-                    EnemyHP enemyHP = hitObject.GetComponent<EnemyHP>();
-                    isHit = true;
-                    isHit = false;
-                    if (enemyHP.enemyHPint == 0)
-                    {
-                        // RaycastのgameObjectを消す
-                        Destroy(hit.collider.gameObject);
-                    }
+                    EnemyHPManager enemyHP = hitObject.GetComponent<EnemyHPManager>();
+                    enemyHP.GetDamage(1);
                 }
             }
         }
