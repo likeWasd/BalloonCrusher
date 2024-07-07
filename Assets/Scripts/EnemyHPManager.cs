@@ -10,7 +10,7 @@ public class EnemyHPManager : MonoBehaviour
     void Start()
     {
         stageManager = GameObject.Find("SystemManager").GetComponent<StageManager>();
-        HP = 5;
+        HP = 5 + (stageManager.stageNumber - 1) * 3;
     }
 
     // Update is called once per frame
