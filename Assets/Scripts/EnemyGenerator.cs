@@ -34,7 +34,7 @@ public class EnemyGenerator : MonoBehaviour
     {
         while (true) {
             yield return null;
-            if (EnemyCount < 1)
+            if (EnemyCount < 40)
             {
                 break;
             }
