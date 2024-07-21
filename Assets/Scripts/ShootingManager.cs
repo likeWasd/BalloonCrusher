@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ShootingManager : MonoBehaviour
 {
+    StageManager stageManager;
+    Coroutine stopMachineGun;
     // Start is called before the first frame update
     void Start()
     {
-        
+        stageManager = GameObject.Find("SystemManager").GetComponent<StageManager>();
     }
 
     // Update is called once per frame
@@ -24,10 +26,32 @@ public class ShootingManager : MonoBehaviour
                 // Enemyに当たったときの処理
                 if (hitObject.CompareTag("Enemy"))
                 {
-                    EnemyHPManager enemyHP = hitObject.GetComponent<EnemyHPManager>();
-                    enemyHP.GetDamage(1);
+                    if (stageManager.stageNumber <= 0)
+                    {
+                        EnemyHPManager enemyHP = hitObject.GetComponent<EnemyHPManager>();
+                        enemyHP.GetDamage(1);
+                    }
+                    else
+                    {
+                        EnemyHPManager enemyHP = hitObject.GetComponent<EnemyHPManager>();
+                        stopMachineGun = StartCoroutine(machineGun(enemyHP));
+                        // StartCoroutine(machineGun(enemyHP));
+                    }
                 }
             }
+            if (Input.GetMouseButtonUp(0) && hitObject.CompareTag("Enemy") && !(stageManager.stageNumber <= 0))
+            {
+                StopCoroutine(stopMachineGun);
+            }
+        }
+    }
+
+    IEnumerator machineGun(EnemyHPManager enemyHP)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            enemyHP.GetDamage(1);
         }
     }
 }
