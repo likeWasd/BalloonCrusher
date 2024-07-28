@@ -8,7 +8,7 @@ public class ShootingManager : MonoBehaviour
     Coroutine stopMachineGun;
     GameObject hitObject;
     int weaponType;
-    // int 
+    //int 
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,7 @@ public class ShootingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // 武器の種類の切り替え
         if (stageManager.stageNumber <= 0)
         {
             weaponType = 1;
@@ -26,6 +27,7 @@ public class ShootingManager : MonoBehaviour
         {
             weaponType = 2;
         }
+        // 攻撃の処理
         if (Input.GetMouseButtonDown(0))
         {
             if (weaponType == 1)
@@ -33,6 +35,7 @@ public class ShootingManager : MonoBehaviour
                 hitObject = GetRaycastHitObject();
                 if (hitObject != null)
                 {
+                    // 当たった敵にダメージを与える
                     if (hitObject.CompareTag("Enemy"))
                     {
                         EnemyHPManager enemyHP = hitObject.GetComponent<EnemyHPManager>();
@@ -47,6 +50,7 @@ public class ShootingManager : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
+            // 武器がマシンガンじゃない場合、StopCoroutineにnullが入ってエラーが起きてしまうので、判定している
             if (stopMachineGun != null)
             {
                 StopCoroutine(stopMachineGun);
