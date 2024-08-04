@@ -6,12 +6,17 @@ public class ShootingManager : MonoBehaviour
 {
     StageManager stageManager;
     Coroutine stopMachineGun;
+    Coroutine stopReload;
     GameObject hitObject;
     int weaponType;
-    //int 
+    /// <summary>
+    /// remainingbulletNumberの略
+    /// </summary>
+    public int remBulNum;
     // Start is called before the first frame update
     void Start()
     {
+        remBulNum = 10;
         stageManager = GameObject.Find("SystemManager").GetComponent<StageManager>();
     }
 
@@ -45,7 +50,14 @@ public class ShootingManager : MonoBehaviour
             }
             if (weaponType == 2)
             {
-                stopMachineGun = StartCoroutine(machineGun());
+                if (remBulNum > 0)
+                {
+                    stopMachineGun = StartCoroutine(machineGun());
+                }
+                else
+                {
+                    stopReload = StartCoroutine(reload());
+                }
             }
         }
         if (Input.GetMouseButtonUp(0))
@@ -73,16 +85,26 @@ public class ShootingManager : MonoBehaviour
     {
         while (true)
         {
-            hitObject = GetRaycastHitObject();
-            if (hitObject != null)
+            if (remBulNum > 0)
             {
-                if (hitObject.CompareTag("Enemy"))
+                hitObject = GetRaycastHitObject();
+                remBulNum--;
+                if (hitObject != null)
                 {
-                    EnemyHPManager enemyHP = hitObject.GetComponent<EnemyHPManager>();
-                    enemyHP.GetDamage(1);
+                    if (hitObject.CompareTag("Enemy"))
+                    {
+                        EnemyHPManager enemyHP = hitObject.GetComponent<EnemyHPManager>();
+                        enemyHP.GetDamage(1);
+                    }
                 }
             }
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    IEnumerator reload()
+    {
+        yield return new WaitForSeconds(1.0f);
+        remBulNum = 10;
     }
 }
