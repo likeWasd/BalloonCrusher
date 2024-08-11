@@ -7,16 +7,19 @@ public class StageManager : MonoBehaviour
 {
     public int killedEnemyCount;
     public int stageNumber;
+    int targetScore = 10;
+    public int remainingEnemyCount;
     // Start is called before the first frame update
     void Start()
     {
-
+        // stageNumber = 5;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (killedEnemyCount >= 3)
+        remainingEnemyCount = targetScore - killedEnemyCount;
+        if (killedEnemyCount >= targetScore)
         {
             killedEnemyCount = 0;
             stageNumber++;

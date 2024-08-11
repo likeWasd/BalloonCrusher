@@ -8,15 +8,20 @@ public class ShootingManager : MonoBehaviour
     Coroutine stopMachineGun;
     Coroutine stopReload;
     GameObject hitObject;
-    int weaponType;
+    public int weaponType;
     /// <summary>
-    /// remainingbulletNumberの略
+    /// remainingBulletNumberの略
     /// </summary>
     public int remBulNum;
+    /// <summary>
+    /// maxBulletNumberの略
+    /// </summary>
+    int maxBulNum;
     // Start is called before the first frame update
     void Start()
     {
-        remBulNum = 10;
+        maxBulNum = 100;
+        remBulNum = maxBulNum;
         stageManager = GameObject.Find("SystemManager").GetComponent<StageManager>();
     }
 
@@ -24,7 +29,7 @@ public class ShootingManager : MonoBehaviour
     void Update()
     {
         // 武器の種類の切り替え
-        if (stageManager.stageNumber <= 0)
+        if (stageManager.stageNumber <= 2)
         {
             weaponType = 1;
         }
@@ -104,7 +109,7 @@ public class ShootingManager : MonoBehaviour
 
     IEnumerator reload()
     {
-        yield return new WaitForSeconds(1.0f);
-        remBulNum = 10;
+        yield return new WaitForSeconds(2.0f);
+        remBulNum = maxBulNum;
     }
 }

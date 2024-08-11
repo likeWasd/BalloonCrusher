@@ -13,7 +13,7 @@ public class EnemyGenerator : MonoBehaviour
         stageManager = GameObject.Find("SystemManager").GetComponent<StageManager>();
         if (stageManager.stageNumber != 1)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 1; i < 3; i++)
             {
                 GenerateEnemy();
             }
@@ -39,9 +39,8 @@ public class EnemyGenerator : MonoBehaviour
                 break;
             }
         }
-        // 実際は5.0f秒から8.0f秒
-        yield return new WaitForSeconds(Random.Range(1.5f, 2.0f));
         GenerateEnemy();
+        yield return new WaitForSeconds(Random.Range(2.0f, 3.5f));
         StartCoroutine(EneGenCor());
     }
 
