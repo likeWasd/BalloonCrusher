@@ -316,7 +316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bc002e1ddaa9a48813341145ee467f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  takenTimeFloat: 0
   takenTime: 0
 --- !u!1 &315035344
 GameObject:
@@ -1218,11 +1217,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBulletNumber: {fileID: 1703959999}
-  textBulletString: {fileID: 428035746}
+  textBulletLabel: {fileID: 428035746}
   textEnemyNumber: {fileID: 2113066828}
   textStageNumber: {fileID: 214693093}
   textTimeNumber: {fileID: 2106736140}
-  textTimeString: {fileID: 1775145365}
+  textTimeLabel: {fileID: 1775145365}
 --- !u!4 &1556905435
 Transform:
   m_ObjectHideFlags: 0

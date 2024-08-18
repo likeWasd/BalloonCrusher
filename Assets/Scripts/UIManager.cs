@@ -6,11 +6,11 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textBulletNumber;
-    [SerializeField] TextMeshProUGUI textBulletString;
+    [SerializeField] TextMeshProUGUI textBulletLabel;
     [SerializeField] TextMeshProUGUI textEnemyNumber;
     [SerializeField] TextMeshProUGUI textStageNumber;
     [SerializeField] TextMeshProUGUI textTimeNumber;
-    [SerializeField] TextMeshProUGUI textTimeString;
+    [SerializeField] TextMeshProUGUI textTimeLabel;
     ShootingManager shootingManager;
     StageManager stageManager;
     TimeManager timeManager;
@@ -21,9 +21,9 @@ public class UIManager : MonoBehaviour
         stageManager = GameObject.Find("SystemManager").GetComponent<StageManager>();
         timeManager = GameObject.Find("SystemManager").GetComponent<TimeManager>();
         textBulletNumber.enabled = false;
-        textBulletString.enabled = false;
+        textBulletLabel.enabled = false;
         textTimeNumber.enabled = false;
-        textTimeString.enabled = false;
+        textTimeLabel.enabled = false;
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
         if (shootingManager.weaponType == 2)
         {
             textBulletNumber.enabled = true;
-            textBulletString.enabled = true;
+            textBulletLabel.enabled = true;
         }
         textBulletNumber.text = shootingManager.remBulNum.ToString();
         textEnemyNumber.text = stageManager.remainingEnemyCount.ToString();
@@ -40,8 +40,8 @@ public class UIManager : MonoBehaviour
         if (stageManager.stageNumber > 5)
         {
             textTimeNumber.enabled = true;
-            textTimeString.enabled = true;
-            textTimeNumber.text = timeManager.takenTime.ToString();
+            textTimeLabel.enabled = true;
+            textTimeNumber.text = timeManager.takenTime.ToString("f0");
             UnityEditor.EditorApplication.isPaused = true;
         }
     }

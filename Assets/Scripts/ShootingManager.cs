@@ -17,12 +17,14 @@ public class ShootingManager : MonoBehaviour
     /// maxBulletNumberの略
     /// </summary>
     int maxBulNum;
+    bool isReloading;
     // Start is called before the first frame update
     void Start()
     {
         maxBulNum = 100;
         remBulNum = maxBulNum;
         stageManager = GameObject.Find("SystemManager").GetComponent<StageManager>();
+        isReloading = false;
     }
 
     // Update is called once per frame
@@ -73,6 +75,11 @@ public class ShootingManager : MonoBehaviour
                 StopCoroutine(stopMachineGun);
             }
         }
+        if (remBulNum <= 0 && !isReloading)
+        {
+            isReloading = true;
+            stopReload = StartCoroutine(reload());
+        }
     }
 
     GameObject GetRaycastHitObject()
@@ -111,5 +118,6 @@ public class ShootingManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         remBulNum = maxBulNum;
+        isReloading = false;
     }
 }

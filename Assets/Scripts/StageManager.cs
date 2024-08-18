@@ -12,7 +12,7 @@ public class StageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // stageNumber = 5;
+        stageNumber = 1;
     }
 
     // Update is called once per frame
@@ -23,12 +23,12 @@ public class StageManager : MonoBehaviour
         {
             killedEnemyCount = 0;
             stageNumber++;
-            if (SceneManager.GetSceneByName("Stage1").name == "Stage1")
+            if (stageNumber % 2 == 0)
             {
                 SceneManager.LoadScene("Stage2", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("Stage1");
             }
-            else if (SceneManager.GetSceneByName("Stage2").name == "Stage2")
+            else if (stageNumber % 2 == 1)
             {
                 SceneManager.LoadScene("Stage1", LoadSceneMode.Additive);
                 SceneManager.UnloadSceneAsync("Stage2");

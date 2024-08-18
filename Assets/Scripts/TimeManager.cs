@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    public float takenTimeFloat;
-    public int takenTime;
+    public float takenTime;
     StageManager stageManager;
     // Start is called before the first frame update
     void Start()
@@ -18,8 +17,7 @@ public class TimeManager : MonoBehaviour
     {
         if (stageManager.stageNumber <= 5)
         {
-            takenTimeFloat += Time.deltaTime;
-            takenTime = Mathf.FloorToInt(takenTimeFloat);
+            takenTime += Time.deltaTime;
         }
     }
 }
