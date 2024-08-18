@@ -10,6 +10,7 @@ public class EnemyHPManager : MonoBehaviour
     StageManager stageManager;
     public Canvas canvas;
     public Slider hpBar;
+    [SerializeField] GameObject explosionPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,7 @@ public class EnemyHPManager : MonoBehaviour
         hp -= damage;
         if (hp == 0)
         {
+            Instantiate(explosionPrefab, this.gameObject.transform.position, Quaternion.identity);
             // Enemyを消す処理
             Destroy(this.gameObject);
             stageManager.killedEnemyCount++;
