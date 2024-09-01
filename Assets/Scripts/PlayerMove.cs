@@ -44,5 +44,6 @@ public class PlayerMove : MonoBehaviour
         {
             transform.Rotate(0, rotateSpeed, 0, Space.World);
         }
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -20, 20), transform.position.y, Mathf.Clamp(transform.position.z, -20, 20));
     }
 }

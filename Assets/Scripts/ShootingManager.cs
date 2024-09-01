@@ -18,6 +18,7 @@ public class ShootingManager : MonoBehaviour
     /// </summary>
     int maxBulNum;
     bool isReloading;
+    [SerializeField] GameObject explodePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +89,8 @@ public class ShootingManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 40.0f))
         {
+            GameObject effectClone = Instantiate(explodePrefab, hit.point, Quaternion.identity);
+            effectClone.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
             return hit.collider.gameObject;
         }
         return null;

@@ -784,6 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   remBulNum: 0
+  explodePrefab: {fileID: 6146545414153545494, guid: 61753401622c2a947a30e2147430e97d, type: 3}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
